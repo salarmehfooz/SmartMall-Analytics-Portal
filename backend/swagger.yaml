@@ -1,0 +1,254 @@
+openapi: 3.0.0
+info:
+  title: SmartMall API
+  version: 1.0.0
+  description: RESTful API for mall administrators and store managers to manage walk-ins, trends, and recommendations.
+
+servers:
+  - url: http://localhost:3000/api
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+          enum: [admin, storeManager]
+        store:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    Store:
+      type: object
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        floor:
+          type: string
+        manager:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    WalkInLog:
+      type: object
+      properties:
+        store:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        estimatedCustomerCount:
+          type: number
+
+    TelcoTrend:
+      type: object
+      properties:
+        category:
+          type: string
+        trendScore:
+          type: number
+        recordedAt:
+          type: string
+          format: date-time
+
+security:
+  - bearerAuth: []
+
+paths:
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Register a new user (admin or storeManager)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        201:
+          description: Registered successfully
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Login and receive JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: Login successful
+
+  /stores:
+    post:
+      tags: [Store]
+      summary: Create a store (Admin only)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Store"
+      responses:
+        201:
+          description: Store created
+
+    get:
+      tags: [Store]
+      summary: Get all stores (Admin only)
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: A list of stores
+
+  /stores/{id}:
+    get:
+      tags: [Store]
+      summary: Get a store by ID (Admin only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Store found
+
+    put:
+      tags: [Store]
+      summary: Update a store (Admin only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Store"
+      responses:
+        200:
+          description: Store updated
+
+    delete:
+      tags: [Store]
+      summary: Delete a store (Admin only)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Store deleted
+
+  /walkinlogs:
+    post:
+      tags: [WalkInLog]
+      summary: Add a walk-in log (StoreManager only)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WalkInLog"
+      responses:
+        201:
+          description: Walk-in log recorded
+
+    get:
+      tags: [WalkInLog]
+      summary: View all walk-in logs (Admin only)
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: List of walk-in logs
+
+  /walkinlogs/my:
+    get:
+      tags: [WalkInLog]
+      summary: View your store's walk-in logs (StoreManager only)
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: Walk-in logs for the logged-in manager’s store
+
+  /telcotrends:
+    post:
+      tags: [TelcoTrend]
+      summary: Create a telco trend (Admin only)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TelcoTrend"
+      responses:
+        201:
+          description: Trend created
+
+    get:
+      tags: [TelcoTrend]
+      summary: Get all telco trends (Admin only)
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: List of all trends
+
+  /telcotrends/my-category:
+    get:
+      tags: [TelcoTrend]
+      summary: Get trends for your store's category (StoreManager only)
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: Trends related to manager’s store category
