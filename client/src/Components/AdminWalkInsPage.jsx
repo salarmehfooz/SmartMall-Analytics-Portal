@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWalkInLogs } from "../redux/walkInLogSlice";
+import { Link } from "react-router-dom";
 
 export default function AdminWalkInsPage() {
   const dispatch = useDispatch();

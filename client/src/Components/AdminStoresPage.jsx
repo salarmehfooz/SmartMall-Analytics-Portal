@@ -6,6 +6,7 @@ import {
   updateStore,
   createStore,
 } from "../redux/storeSlice";
+import { Link } from "react-router-dom";
 
 export default function AdminStoresPage() {
   const dispatch = useDispatch();
@@ -18,7 +19,6 @@ export default function AdminStoresPage() {
     floor: "",
   });
 
-  
   const [editingStore, setEditingStore] = useState(null);
   const [editFormData, setEditFormData] = useState({
     name: "",
