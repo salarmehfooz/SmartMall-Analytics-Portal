@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMyCategoryTrends } from "../redux/telcoTrendSlice";
+import { Link } from "react-router-dom";
+
 
 export default function StoreManagerTelcoTrendsPage() {
   const dispatch = useDispatch();

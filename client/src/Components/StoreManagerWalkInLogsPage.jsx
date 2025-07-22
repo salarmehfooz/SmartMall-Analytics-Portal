@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchWalkInLogs, addWalkInLog } from "../redux/walkInLogSlice";
 import { logout } from "../redux/authSlice";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function StoreManagerWalkInLogsPage() {
   const dispatch = useDispatch();
