@@ -55,7 +55,7 @@ export default function AdminRegisterStoreManagerPage() {
           name,
           email,
           password,
-          storeId, // ✅ Corrected key
+          storeId,
         }),
       });
 

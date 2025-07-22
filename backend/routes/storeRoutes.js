@@ -4,7 +4,6 @@ import { verifyToken, isAdmin } from "../controllers/authController.js";
 
 const router = express.Router();
 
-// All routes here are Admin-only
 router.use(verifyToken, isAdmin);
 
 router.post("/", storeController.createStore);

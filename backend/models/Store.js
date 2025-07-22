@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const storeSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  category: { type: String, required: true }, // e.g., "fashion", "electronics"
+  category: { type: String, required: true }, 
   floor: { type: String, required: true },
   manager: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    unique: true, // Enforce one manager per store
+    unique: true, 
     required: false,
   },
   createdAt: { type: Date, default: Date.now },

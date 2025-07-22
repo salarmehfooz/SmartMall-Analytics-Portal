@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const API_URL = "http://localhost:3000/api";
 
-// Fetch recommendations (admin or store manager)
 export const fetchRecommendations = createAsyncThunk(
   "recommendations/fetchRecommendations",
   async (_, { rejectWithValue, getState }) => {

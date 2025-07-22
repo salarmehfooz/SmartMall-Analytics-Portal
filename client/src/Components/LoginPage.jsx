@@ -10,7 +10,6 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // If logged in, redirect based on role
   if (token && user) {
     if (user.role === "admin") return <Navigate to="/admin/*" replace />;
     if (user.role === "storeManager")

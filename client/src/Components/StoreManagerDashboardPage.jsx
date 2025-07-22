@@ -43,7 +43,6 @@ export default function StoreManagerDashboardPage() {
         </button>
       </div>
 
-      {/* Summary Cards */}
       <div className="row mb-4">
         <div className="col-md-6">
           <div className="card text-white bg-secondary mb-3">
@@ -83,7 +82,6 @@ export default function StoreManagerDashboardPage() {
         </div>
       </div>
 
-      {/* Navigation Buttons */}
       <div className="row">
         <div className="col-md-6 mb-3">
           <Link

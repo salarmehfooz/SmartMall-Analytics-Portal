@@ -9,7 +9,7 @@ export const createTelcoTrend = async (req, res) => {
     const trend = new TelcoTrend({
       category,
       trendScore,
-      recordedAt: new Date(), // auto, optional
+      recordedAt: new Date(), 
     });
 
     await trend.save();
@@ -22,7 +22,7 @@ export const createTelcoTrend = async (req, res) => {
 // 📄 Admin: Get all TelcoTrends sorted by trendScore descending (most trending first)
 export const getAllTelcoTrends = async (req, res) => {
   try {
-    const trends = await TelcoTrend.find().sort({ trendScore: -1 }); // sort by trendScore descending
+    const trends = await TelcoTrend.find().sort({ trendScore: -1 }); 
     res.status(200).json(trends);
   } catch (err) {
     res
@@ -44,7 +44,7 @@ export const getMyCategoryTrends = async (req, res) => {
 
     const trends = await TelcoTrend.find({ category }).sort({ trendScore: -1 });
 
-    res.status(200).json(trends); // ✅ return just array
+    res.status(200).json(trends); 
   } catch (err) {
     res
       .status(500)

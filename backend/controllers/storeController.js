@@ -28,7 +28,7 @@ export const createStore = async (req, res) => {
     const store = new Store({
       name,
       category,
-      floor, // store as string
+      floor, 
       manager: manager ? manager._id : undefined,
     });
 

@@ -11,7 +11,6 @@ export default function AdminStoresPage() {
   const dispatch = useDispatch();
   const { stores, loading, error } = useSelector((state) => state.stores);
 
-  // Create modal state
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [createFormData, setCreateFormData] = useState({
     name: "",
@@ -19,7 +18,7 @@ export default function AdminStoresPage() {
     floor: "",
   });
 
-  // Edit modal state
+  
   const [editingStore, setEditingStore] = useState(null);
   const [editFormData, setEditFormData] = useState({
     name: "",

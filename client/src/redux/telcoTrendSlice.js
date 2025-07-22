@@ -8,7 +8,6 @@ const initialState = {
   createError: null,
 };
 
-// Fetch all telco trends (admin)
 export const fetchTelcoTrends = createAsyncThunk(
   "telcoTrends/fetchTelcoTrends",
   async (_, thunkAPI) => {
@@ -35,7 +34,6 @@ export const fetchTelcoTrends = createAsyncThunk(
   }
 );
 
-// Create a new telco trend (admin)
 export const createTelcoTrend = createAsyncThunk(
   "telcoTrends/createTelcoTrend",
   async (newTrend, thunkAPI) => {
@@ -65,7 +63,6 @@ export const createTelcoTrend = createAsyncThunk(
   }
 );
 
-// Fetch telco trends filtered by store category (storeManager)
 export const fetchMyCategoryTrends = createAsyncThunk(
   "telcoTrends/fetchMyCategoryTrends",
   async (_, thunkAPI) => {
@@ -90,7 +87,7 @@ export const fetchMyCategoryTrends = createAsyncThunk(
       }
 
       const data = await response.json();
-      return data; // ✅ this is the trends array already
+      return data; 
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

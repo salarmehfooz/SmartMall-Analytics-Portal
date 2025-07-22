@@ -139,7 +139,7 @@ export const registerStoreManager = async (req, res) => {
 // 🔐 JWT Auth Middleware
 export const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  const token = authHeader?.split(" ")[1]; // Bearer TOKEN
+  const token = authHeader?.split(" ")[1]; 
 
   if (!token) return res.status(401).json({ message: "No token provided" });
 

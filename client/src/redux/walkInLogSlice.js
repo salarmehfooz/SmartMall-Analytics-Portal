@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const API_URL = "http://localhost:3000/api";
 
-// Fetch walk-in logs (route depends on user role)
 export const fetchWalkInLogs = createAsyncThunk(
   "walkInLogs/fetchWalkInLogs",
   async (_, { rejectWithValue, getState }) => {
@@ -10,8 +9,6 @@ export const fetchWalkInLogs = createAsyncThunk(
       const token = getState().auth.token;
       const role = getState().auth.user.role;
 
-      // StoreManager fetches their own logs (/walkinlogs/my)
-      // Admin fetches all logs (/walkinlogs)
       const url =
         role === "storeManager"
           ? `${API_URL}/walkinlogs/my`
@@ -35,7 +32,6 @@ export const fetchWalkInLogs = createAsyncThunk(
   }
 );
 
-// Add walk-in log (store manager)
 export const addWalkInLog = createAsyncThunk(
   "walkInLogs/addWalkInLog",
   async (walkInData, { rejectWithValue, getState }) => {
@@ -87,7 +83,7 @@ const walkInLogSlice = createSlice({
         state.error = null;
       })
       .addCase(addWalkInLog.fulfilled, (state, action) => {
-        state.logs.push(action.payload.log); // payload has message + log
+        state.logs.push(action.payload.log); 
       })
       .addCase(addWalkInLog.rejected, (state, action) => {
         state.error = action.payload;

@@ -8,11 +8,9 @@ import {
 
 const router = express.Router();
 
-// Admin-only routes
 router.post("/", verifyToken, isAdmin, telcoTrendController.createTelcoTrend);
 router.get("/", verifyToken, isAdmin, telcoTrendController.getAllTelcoTrends);
 
-// StoreManager route - view trends for their store's category
 router.get(
   "/my-category",
   verifyToken,

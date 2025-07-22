@@ -15,7 +15,6 @@ export default function StoreManagerWalkInLogsPage() {
     error,
   } = useSelector((state) => state.walkInLogs);
 
-  // Form state for adding a new walk-in log
   const [estimatedCustomerCount, setEstimatedCustomerCount] = useState("");
   const [formError, setFormError] = useState(null);
   const [formLoading, setFormLoading] = useState(false);
@@ -32,7 +31,6 @@ export default function StoreManagerWalkInLogsPage() {
   const handleAddLog = async (e) => {
     e.preventDefault();
 
-    // Validation: estimatedCustomerCount must be positive integer
     const count = Number(estimatedCustomerCount);
     if (!count || count <= 0) {
       setFormError("Please enter a valid number of customers.");
@@ -49,7 +47,6 @@ export default function StoreManagerWalkInLogsPage() {
         })
       ).unwrap();
 
-      // Clear form after success
       setEstimatedCustomerCount("");
     } catch (err) {
       setFormError(err || "Failed to add walk-in log");
@@ -67,7 +64,6 @@ export default function StoreManagerWalkInLogsPage() {
         </button>
       </div>
 
-      {/* Add Walk-in Log Form */}
       <div className="card mb-4">
         <div className="card-header">Add New Walk-in Log</div>
         <div className="card-body">
@@ -95,7 +91,6 @@ export default function StoreManagerWalkInLogsPage() {
         </div>
       </div>
 
-      {/* Walk-in Logs Table */}
       {loading && <p>Loading walk-in logs...</p>}
       {error && <p className="text-danger">Error: {error}</p>}
 

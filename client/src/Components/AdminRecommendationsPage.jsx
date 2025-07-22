@@ -5,7 +5,6 @@ import { fetchRecommendations } from "../redux/recommendationSlice";
 export default function AdminRecommendationsPage() {
   const dispatch = useDispatch();
 
-  // Grab state from recommendationSlice
   const { recommendations, loading, error } = useSelector(
     (state) => state.recommendations
   );

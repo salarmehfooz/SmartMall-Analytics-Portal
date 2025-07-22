@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const API_URL = "http://localhost:3000/api";
 
-// Fetch all stores (admin)
 export const fetchStores = createAsyncThunk(
   "stores/fetchStores",
   async (_, { rejectWithValue, getState }) => {
@@ -25,7 +24,6 @@ export const fetchStores = createAsyncThunk(
   }
 );
 
-// Create new store (admin)
 export const createStore = createAsyncThunk(
   "stores/createStore",
   async (storeData, { rejectWithValue, getState }) => {
@@ -51,7 +49,6 @@ export const createStore = createAsyncThunk(
   }
 );
 
-// Update store (admin)
 export const updateStore = createAsyncThunk(
   "stores/updateStore",
   async ({ id, updateData }, { rejectWithValue, getState }) => {
@@ -77,7 +74,6 @@ export const updateStore = createAsyncThunk(
   }
 );
 
-// Delete store (admin)
 export const deleteStore = createAsyncThunk(
   "stores/deleteStore",
   async (id, { rejectWithValue, getState }) => {
@@ -93,7 +89,7 @@ export const deleteStore = createAsyncThunk(
         const error = await response.json();
         return rejectWithValue(error.message || "Failed to delete store");
       }
-      return id; // return deleted id to update state
+      return id; 
     } catch (error) {
       return rejectWithValue(error.message || "Failed to delete store");
     }
@@ -108,7 +104,6 @@ const storeSlice = createSlice({
     error: null,
   },
   reducers: {
-    // optionally add local store update reducers here
   },
   extraReducers: (builder) => {
     builder
